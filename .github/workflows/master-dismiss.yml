@@ -13,15 +13,15 @@ jobs:
       - name: Dismiss Reviews
         run: |
           # Get the pull request number
-          PR_NUMBER=$(curl --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          PR_NUMBER=$(curl --header "Authorization: Bearer ${{ secrets.THINK }}" \
                           "https://api.github.com/repos/${{ github.repository }}/pulls" | jq -r '.[0].number')
           echo "pr num : $PR_NUMBER"
 
           # Get the list of approved reviews
-          REVIEWS=$(curl --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          REVIEWS=$(curl --header "Authorization: Bearer ${{ secrets.THINK }}" \
                         "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/reviews" | \
                         jq -r 'map(select(.state == "APPROVED")) | .[].id')
-          echo "pr num : $REVIEWS"
+          echo "pr review : $REVIEWS"
 
           # Iterate over the approved reviews and dismiss each one
           for review_id in $REVIEWS; do
