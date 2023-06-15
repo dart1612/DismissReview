@@ -27,5 +27,5 @@ jobs:
           for review_id in $REVIEWS; do
             curl --request POST \
                  --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                 --url "https://github.com/dart1612/DismissReview/pull/3#pullrequestreview-1480239406/dismissals"
+                 --url "https://api.github.com/dart1612/DismissReview/pull/3#pullrequestreview-1480239406/dismissals"
           done
